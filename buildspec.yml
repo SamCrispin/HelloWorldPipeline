@@ -2,4 +2,5 @@ version: 0.2
 
 artifacts:
   files:
-    - Archive.zip
+    - index.html
+    - index2.html
