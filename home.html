@@ -3,9 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <title>Hello World</title>
+    <style>
+        body {
+            background-color: #232F3E;
+        }
+        label, button {
+            color: #FF9900;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 20px;
+            margin-left: 40px;
+        }
+        input {
+            color: #232F3E;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 20px;
+            margin-left: 20px;
+        }
+    </style>
 </head>
 <body>
-<script src="script.js"></script>
+<script>
+    // define the callAPI function that takes a first name and last name as parameters
+    let callAPI = (firstName,lastName) => {
+        // instantiate a headers object
+        let myHeaders = new Headers();
+        // add content type header to object
+        myHeaders.append("Content-Type", "application/json");
+        // using built in JSON utility package turn object to string and store in a variable
+        let raw = JSON.stringify({"firstName":firstName,"lastName":lastName});
+        // create a JSON object with parameters for API call and store in a variable
+        let requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            body: raw,
+            redirect: 'follow'
+        };
+        window.location.href = "confirmation.html";
+        // make API call with parameters and use promises to get response
+        fetch("https://k6nz7xwcvk.execute-api.us-east-1.amazonaws.com/dev", requestOptions)
+            .then(response => response.text())
+            .then(result => alert(JSON.parse(result).body))
+            .catch(error => console.log('error', error));
+    };
+</script>
 <form>
     <label>First Name :</label>
     <input type="text" id="fName">
