@@ -2,4 +2,7 @@ version: 0.2
 
 artifacts:
   files:
-    - Archive.zip
+    - home.html
+    - comfirmation.html
+    - script.js
+    - style.css
